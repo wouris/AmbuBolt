@@ -3,13 +3,13 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Azure.Cosmos.Linq;
 
-namespace AmbuBolt.Data
+namespace AmbuBolt.Services
 {
-    public class PatientContext : DbContext
+    public class PatientService : DbContext
     {
         private readonly Container _container;
 
-        public PatientContext(CosmosClient cosmosClient, string databaseName, string containerName)
+        public PatientService(CosmosClient cosmosClient, string databaseName, string containerName)
         {
             _container = cosmosClient.GetContainer(databaseName, containerName);
         }

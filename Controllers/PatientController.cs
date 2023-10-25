@@ -1,9 +1,6 @@
-﻿using AmbuBolt.Data;
-using AmbuBolt.Models;
-using Microsoft.AspNetCore.Http;
+﻿using AmbuBolt.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
+using AmbuBolt.Services;
 
 namespace AmbuBolt.Controllers
 {
@@ -11,23 +8,23 @@ namespace AmbuBolt.Controllers
     [ApiController]
     public class PatientController : ControllerBase
     {
-        private readonly PatientContext _context;
+        private readonly PatientService _service;
 
-        public PatientController(PatientContext patientContext)
+        public PatientController(PatientService patientService)
         {
-            _context = patientContext;
+            _service = patientService;
         }
 
         [HttpGet]
         public async Task<IEnumerable<Patient>> GetPatients()
         {
-            return await _context.GetPatientsAsync();
+            return await _service.GetPatientsAsync();
         }
 
         [HttpPost]
         public async Task<ActionResult<Patient>> AddPatient(Patient p)
         {
-            var createdPatient = await _context.CreateArticleAsync(p);
+            var createdPatient = await _service.CreateArticleAsync(p);
             return CreatedAtAction(nameof(GetPatients), new { id = createdPatient.Id }, createdPatient);
         }
     }

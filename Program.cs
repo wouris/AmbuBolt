@@ -1,16 +1,28 @@
-using AmbuBolt.Data;
+using System.Diagnostics;
 using Microsoft.Azure.Cosmos;
-using Microsoft.EntityFrameworkCore;
-using System.Configuration;
+using AmbuBolt.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddSingleton((provider) =>
+builder.Services.AddSingleton<PatientService>(provider =>
 {
     var cosmosClient = new CosmosClient(builder.Configuration.GetConnectionString("CosmosDB"));
-    return new PatientContext(cosmosClient, "AmbuBolt", "Patients");
+    return new PatientService(cosmosClient, "AmbuBolt", "Patients");
+});
+
+builder.Services.AddSingleton<GoogleMapsService>(provider =>
+{
+    var apiKey = builder.Configuration.GetValue("GoogleAPI", "");
+    
+    if(apiKey == "")
+    {
+        throw new Exception("GoogleAPI not found in configuration");
+    }
+    
+    var httpClient = new HttpClient();
+    Debug.Print("Registering GoogleMapsService");
+    return new GoogleMapsService(httpClient, apiKey);
 });
 
 builder.Services.AddControllers();
