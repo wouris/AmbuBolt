@@ -1,12 +1,17 @@
 using AmbuBolt.Data;
+using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<PatientContext>(options =>
-    options.UseInMemoryDatabase("Patients"));
+builder.Services.AddSingleton((provider) =>
+{
+    var cosmosClient = new CosmosClient(builder.Configuration.GetConnectionString("CosmosDB"));
+    return new PatientContext(cosmosClient, "AmbuBolt", "Patients");
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

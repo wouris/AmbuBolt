@@ -2,6 +2,8 @@
 using AmbuBolt.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace AmbuBolt.Controllers
 {
@@ -17,17 +19,16 @@ namespace AmbuBolt.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetPatients()
+        public async Task<IEnumerable<Patient>> GetPatients()
         {
-            return Ok(_context.Patients);
+            return await _context.GetPatientsAsync();
         }
 
         [HttpPost]
-        public IActionResult AddPatient(Patient patient)
+        public async Task<ActionResult<Patient>> AddPatient(Patient p)
         {
-            _context.Patients.Add(patient);
-            _context.SaveChanges();
-            return StatusCode(StatusCodes.Status201Created);
+            var createdPatient = await _context.CreateArticleAsync(p);
+            return CreatedAtAction(nameof(GetPatients), new { id = createdPatient.Id }, createdPatient);
         }
     }
 }
