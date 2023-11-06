@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Z004U6EM\\Desktop\\AmbuBolt\\AmbuBolt.csproj": {}
+    "C:\\Users\\Z004U6EM\\source\\repos\\AmbuBolt\\AmbuBolt.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Z004U6EM\\Desktop\\AmbuBolt\\AmbuBolt.csproj": {
+    "C:\\Users\\Z004U6EM\\source\\repos\\AmbuBolt\\AmbuBolt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Z004U6EM\\Desktop\\AmbuBolt\\AmbuBolt.csproj",
+        "projectUniqueName": "C:\\Users\\Z004U6EM\\source\\repos\\AmbuBolt\\AmbuBolt.csproj",
         "projectName": "AmbuBolt",
-        "projectPath": "C:\\Users\\Z004U6EM\\Desktop\\AmbuBolt\\AmbuBolt.csproj",
+        "projectPath": "C:\\Users\\Z004U6EM\\source\\repos\\AmbuBolt\\AmbuBolt.csproj",
         "packagesPath": "D:\\WS\\packages",
-        "outputPath": "C:\\Users\\Z004U6EM\\Desktop\\AmbuBolt\\obj\\",
+        "outputPath": "C:\\Users\\Z004U6EM\\source\\repos\\AmbuBolt\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Z004U6EM\\Desktop\\NuGet.Config",
           "C:\\Users\\Z004U6EM\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

@@ -2,28 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AmbuBolt
 {
-    public class Patient
+    
+public class Patient
     {
-        public Patient(string v1, int v2, string v3, string v4)
+        public Patient()
         {
-            Condition = v1;
-            Age = v2;
-            Diagnosis = v3;
-            Description = v4;
         }
 
-        public string Condition { get; set; }
+        public Patient(string Condition, int Age, string Diagnosis, string Description)
+        {
+            this.Condition = Condition;
+            this.Age = Age;
+            this.Diagnosis = Diagnosis;
+            this.Description = Description;
+        }
 
+        [JsonPropertyName("Condition")]
+        public string? Condition { get; set; }
+
+        [JsonPropertyName("Age")]
         public int Age { get; set; }
 
-        public string Diagnosis { get; set; }
+        [JsonPropertyName("Diagnosis")]
+        public string? Diagnosis { get; set; }
 
-        public string Description { get; set; }
+        [JsonPropertyName("Description")]
+        public string? Description { get; set; }
     }
-
 
 }

@@ -11,7 +11,11 @@ namespace AmbuBolt
     public class RestService
     {
         HttpClient client;
-        JsonSerializerOptions serializerOptions;
+        JsonSerializerOptions serializerOptions = new JsonSerializerOptions()
+        {
+            DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
+        };
+            
 
         public List<Patient> patients { get;  set; }
         
@@ -26,17 +30,31 @@ namespace AmbuBolt
             };
         }
 
-        //public async Task GetListOfPatients()
-        //{
-        //    string BaseAdress = (DeviceInfo.Platform == DevicePlatform.Android) ? "http://10.0.2.2:5293" : "http://localhost:5293";
+        public async Task<List<Patient>> GetPatientList()
+        {
+            patients = new List<Patient>();
 
-        //    string Server = BaseAdress + "/api/Patient";
+            string baseAdress = (DeviceInfo.Platform == DevicePlatform.Android) ? "http://10.0.2.2:5293" : "http://localhost:5293";
 
-        //    Debug.WriteLine(Server);
+            string server = baseAdress + "/api/Patient";
 
-        //    Uri uri = new Uri(Server);
+            Uri uri = new Uri(string.Format(server, string.Empty));
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    patients = JsonSerializer.Deserialize<List<Patient>>(content, serializerOptions);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
 
-        //}
+            return patients;
+        }
 
         public async Task SendPatientInfo(Patient patient, bool isNewItem = false)
         { 

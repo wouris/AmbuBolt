@@ -5,10 +5,15 @@
              Title="MedFormList">
     <ListView
        x:Name="patientList" 
-       BackgroundColor="Purple">
+       BackgroundColor="Transparent"
+       SeparatorColor="Black" 
+       >
         <ListView.ItemTemplate>
             <DataTemplate>
-                
+                <TextCell 
+                    Text="{Binding Condition}"
+                    Detail="{Binding Age}"      
+                ></TextCell>
             </DataTemplate> 
         </ListView.ItemTemplate>
 
