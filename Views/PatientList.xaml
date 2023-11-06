@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AmbuBolt.Views.PatientList"
              Title="MedFormList">
+    <StackLayout>
     <ListView
        x:Name="patientList" 
        BackgroundColor="Transparent"
@@ -18,6 +19,8 @@
         </ListView.ItemTemplate>
 
     </ListView>
+        <Button Text="Refresh" Clicked="RefreshButton_Clicked"/>
+    </StackLayout>
 
 
 

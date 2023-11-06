@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AmbuBolt
@@ -13,11 +14,16 @@ namespace AmbuBolt
         HttpClient client;
         JsonSerializerOptions serializerOptions = new JsonSerializerOptions()
         {
-            DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
+            PropertyNameCaseInsensitive = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, 
+            AllowTrailingCommas = true, 
+            IgnoreReadOnlyProperties = false, 
+            ReadCommentHandling = JsonCommentHandling.Skip, 
+            DictionaryKeyPolicy = null 
         };
-            
 
-        public List<Patient> patients { get;  set; }
+
+        public List<Patient> patients;
         
         public RestService()
         {
@@ -45,7 +51,9 @@ namespace AmbuBolt
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
+                    //Debug.WriteLine(content);
                     patients = JsonSerializer.Deserialize<List<Patient>>(content, serializerOptions);
+                    
                 }
             }
             catch (Exception ex)

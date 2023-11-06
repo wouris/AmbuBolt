@@ -44,10 +44,9 @@ public partial class MainPage : ContentPage
 		await restService.SendPatientInfo(new Patient("penis", 2801 , "penis","penis"));
     }
 
-	
-
-
-
-
+    private async void btn_Get_Clicked(object sender, EventArgs e)
+    {
+		await restService.GetPatientList();
+	}
 }
 

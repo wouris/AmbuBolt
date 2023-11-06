@@ -22,17 +22,22 @@ public class Patient
             this.Description = Description;
         }
 
-        [JsonPropertyName("Condition")]
+        [JsonPropertyName("condition")]
         public string? Condition { get; set; }
 
-        [JsonPropertyName("Age")]
+        [JsonPropertyName("age")]
         public int Age { get; set; }
 
-        [JsonPropertyName("Diagnosis")]
+        [JsonPropertyName("diagnosis")]
         public string? Diagnosis { get; set; }
 
-        [JsonPropertyName("Description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
-    }
 
+        public override string ToString()
+        {
+            return $"Condition: {Condition ?? "N/A"}, Age: {Age}, Diagnosis: {Diagnosis ?? "N/A"}, Description: {Description ?? "N/A"}";
+        }
+
+    }
 }

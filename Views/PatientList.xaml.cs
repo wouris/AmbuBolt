@@ -1,21 +1,26 @@
+using System.Diagnostics;
+
 namespace AmbuBolt.Views;
+
 
 public partial class PatientList : ContentPage
 {
-	public PatientList()
+    List<Patient> patients = new List<Patient>();
+    List<Patient> patientss = new List<Patient> { new Patient("Yes", 5, "No", "Maybe") };
+    RestService restService;
+    public PatientList()
 	{
-		InitializeComponent();
-
-		List<Patient> patients = new List<Patient>()
-		{
-			new Patient() {Condition = "Stabilized", Age = 25, Diagnosis = "Bad", Description = "Nic"},
-
-			new Patient() {Condition = "Stabilized", Age = 25, Diagnosis = "Bad", Description = "Nic"},
-
-			new Patient() {Condition = "Stabilized", Age = 25, Diagnosis = "Bad", Description = "Nic"}
-		};
-
-		patientList.ItemsSource = patients;
-
+        InitializeComponent();
+		restService = new RestService();
+	
+		patientList.ItemsSource = patientss;
 	}
+
+    public async void RefreshButton_Clicked(object sender, EventArgs e)
+    {
+        patients = await restService.GetPatientList();
+
+        patientList.ItemsSource = null;
+        patientList.ItemsSource = patients;
+    }
 }

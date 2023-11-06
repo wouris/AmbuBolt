@@ -44,10 +44,15 @@
 
             <Button 
                 x:Name="btn_RestApi"
-                Text="Send"
+                Text="POST"
                 Clicked="btn_RestApi_Clicked"
                 HorizontalOptions="Center"/>
 
+            <Button
+                x:Name="btn_Get"
+                Text="GET"
+                Clicked="btn_Get_Clicked"
+                HorizontalOptions="Center"/>
 
         </VerticalStackLayout>
     </ScrollView>
