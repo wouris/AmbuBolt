@@ -17,14 +17,13 @@ public partial class MainPage : ContentPage
 	{
         count++;
 
-        String nigga = "Hello, nigg";
+        String message = "Hello, world!";
 		for (int i  = 0; i < count; i++)
 		{
-			nigga = nigga + "g";
+			message = message + "!";
 		}
-		String niggaString = nigga + "a!";
-
-		Nigga.Text = niggaString;
+		
+		Nigga.Text = message;
 
 		if (count == 1)
 			CounterBtn.Text = $"Clicked {count} time";

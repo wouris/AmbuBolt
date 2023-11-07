@@ -17,7 +17,7 @@
 
             <Label
                 x:Name="Nigga"
-                Text="Hello, nigga!"
+                Text="Hello, world!"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
